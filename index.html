@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="Portfolyo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b100f">
+  <meta name="description" content="Fariz Jafarov — Bilgisayar mühendisliği, teknoloji ve uluslararası organizasyon deneyimleri.">
+  <title>Fariz Jafarov — Teknoloji × Organizasyon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b100f;
+      --bg-soft: #101716;
+      --panel: rgba(255,255,255,.045);
+      --panel-strong: rgba(255,255,255,.065);
+      --line: rgba(231,245,237,.12);
+      --text: #edf4ef;
+      --muted: #a0ada5;
+      --mint: #a8e6cb;
+      --violet: #b7a5ff;
+      --mono: "DM Mono", monospace;
+      --sans: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --container: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -2; opacity: .22; background-image: linear-gradient(rgba(168,230,203,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(168,230,203,.04) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(to bottom, black, transparent 78%); }
+    body::after { content: ""; position: fixed; width: 680px; height: 680px; top: -330px; right: -250px; pointer-events: none; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(168,230,203,.13), transparent 68%); }
+    ::selection { color: #09100d; background: var(--mint); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(var(--container), calc(100% - 48px)); margin: 0 auto; }
+    .mono { font-family: var(--mono); }
+    .eyebrow { display: flex; align-items: center; gap: 11px; color: var(--mint); font: 500 11px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: currentColor; opacity: .85; }
+    .section { padding: 110px 0; position: relative; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 42px; }
+    .section-head h2 { margin: 12px 0 0; font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -.065em; font-weight: 700; }
+    .section-index { color: #66736b; font: 12px var(--mono); letter-spacing: .12em; }
+
+    /* Navigation */
+    .site-header { position: fixed; inset: 16px 0 auto; z-index: 20; padding: 0 20px; }
+    .nav-shell { max-width: 1220px; height: 68px; margin: auto; padding: 0 18px 0 22px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(231,245,237,.13); border-radius: 18px; background: rgba(11,16,15,.78); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 10px 35px rgba(0,0,0,.12); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font: 500 13px var(--mono); letter-spacing: .08em; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--mint); color: #0b100f; font-weight: 700; letter-spacing: -.08em; box-shadow: 0 0 24px rgba(168,230,203,.14); }
+    .brand span:last-child { color: #c9d4cd; }
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-links a { padding: 10px 13px; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 600; transition: color .2s, background .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: rgba(255,255,255,.06); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border-radius: 11px; background: var(--text); color: #101613; font-size: 12px; font-weight: 800; transition: transform .2s, background .2s; }
+    .nav-cta:hover { transform: translateY(-2px); background: var(--mint); }
+    .language-switch { display: inline-flex; align-items: center; gap: 10px; padding: 8px 15px; border: 1px solid rgba(231,245,237,.28); border-radius: 999px; background: transparent; color: #d5ded8; font: 700 12px var(--mono); letter-spacing: .12em; flex-shrink: 0; }
+    .language-switch button { padding: 2px 0; border: 0; background: transparent; color: #a0ada5; cursor: pointer; font: inherit; transition: color .2s; }
+    .language-switch button.active, .language-switch button:hover { color: var(--mint); }
+    .language-switch button:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; border-radius: 3px; }
+    .language-switch span { opacity: .55; }
+    .menu-toggle { display: none; border: 1px solid var(--line); color: var(--text); background: transparent; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; }
+
+    /* Hero */
+    .hero { min-height: 790px; padding: 175px 0 90px; display: flex; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(350px, .85fr); gap: 65px; align-items: center; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; border: 1px solid rgba(168,230,203,.22); border-radius: 999px; color: #b6c9bd; background: rgba(168,230,203,.055); font: 11px var(--mono); letter-spacing: .04em; }
+    .availability-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(168,230,203,.1); }
+    .hero h1 { margin: 28px 0 24px; font-size: clamp(4.4rem, 9.7vw, 8.4rem); font-weight: 800; line-height: .83; letter-spacing: -.105em; }
+    .hero h1 span { display: block; }
+    .hero h1 .surname { margin-top: 15px; color: transparent; -webkit-text-stroke: 1px rgba(237,244,239,.77); background: linear-gradient(105deg, var(--mint) 5%, #c5e8d5 38%, var(--violet) 100%); -webkit-background-clip: text; background-clip: text; }
+    .hero-copy { max-width: 570px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.9; }
+    .hero-copy strong { color: var(--text); font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 50px; padding: 0 18px; border: 1px solid var(--line); border-radius: 12px; font-size: 12px; font-weight: 800; transition: transform .2s, border-color .2s, background .2s; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: var(--mint); color: #101713; border-color: var(--mint); }
+    .btn-primary:hover { background: #c1f0d9; }
+    .btn-secondary { background: rgba(255,255,255,.025); color: var(--text); }
+    .btn-secondary:hover { border-color: rgba(183,165,255,.6); background: rgba(183,165,255,.06); }
+    .btn svg { width: 15px; height: 15px; }
+    .hero-footnote { display: flex; align-items: center; gap: 12px; margin-top: 48px; color: #728077; font: 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .hero-footnote::before { content: ""; width: 40px; height: 1px; background: #42534a; }
+
+    /* Abstract portfolio visual */
+    .hero-visual { min-height: 470px; position: relative; display: grid; place-items: center; isolation: isolate; }
+    .visual-halo { position: absolute; width: 370px; height: 370px; border-radius: 50%; background: radial-gradient(circle, rgba(168,230,203,.11), rgba(183,165,255,.045) 42%, transparent 70%); filter: blur(2px); }
+    .orbit { position: absolute; border: 1px solid rgba(168,230,203,.19); border-radius: 50%; transform: rotate(-28deg); }
+    .orbit.one { width: 420px; height: 230px; }
+    .orbit.two { width: 350px; height: 350px; border-color: rgba(183,165,255,.21); transform: rotate(31deg) scaleX(.78); }
+    .orbit.three { width: 280px; height: 430px; border-color: rgba(237,244,239,.1); transform: rotate(55deg) scaleX(.63); }
+    .orbit-dot { position: absolute; width: 10px; height: 10px; background: var(--mint); border-radius: 50%; box-shadow: 0 0 22px rgba(168,230,203,.8); top: 87px; right: 83px; }
+    .visual-core { position: relative; z-index: 2; width: 230px; height: 270px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(237,244,239,.22); border-radius: 20px; background: linear-gradient(145deg, rgba(29,41,35,.95), rgba(15,21,19,.9)); box-shadow: 0 30px 90px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08); transform: rotate(-6deg); }
+    .visual-core::before { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(168,230,203,.12); border-radius: 13px; pointer-events: none; }
+    .visual-top { display: flex; justify-content: space-between; color: #93a59a; font: 9px var(--mono); letter-spacing: .12em; }
+    .monogram { display: flex; align-items: baseline; gap: 4px; font-size: 76px; font-weight: 800; line-height: 1; letter-spacing: -.12em; }
+    .monogram span:last-child { color: var(--mint); }
+    .visual-bottom { display: flex; justify-content: space-between; align-items: end; gap: 10px; color: #91a097; font: 9px/1.65 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+    .visual-bottom b { color: var(--text); font-size: 11px; font-weight: 500; }
+    .float-card { position: absolute; z-index: 3; display: flex; align-items: center; gap: 11px; padding: 13px 15px; border: 1px solid rgba(237,244,239,.14); border-radius: 14px; background: rgba(18,27,23,.87); box-shadow: 0 15px 40px rgba(0,0,0,.2); backdrop-filter: blur(12px); }
+    .float-card .mini-icon { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 10px; background: rgba(168,230,203,.1); color: var(--mint); }
+    .float-card svg { width: 17px; height: 17px; }
+    .float-card small { display: block; color: #7f9085; font: 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .float-card strong { display: block; color: #e8f0eb; font-size: 11px; margin-top: 2px; }
+    .float-card.card-a { top: 65px; left: 0; }
+        .float-card.card-b { bottom: 65px; right: -5px; }
+    .float-card.card-b .mini-icon { color: var(--violet); background: rgba(183,165,255,.1); }
+    .visual-label { position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); color: #59675f; white-space: nowrap; font: 9px var(--mono); letter-spacing: .19em; }
+
+    /* Short intro strip */
+    .signal-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.018); }
+    .signal-inner { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .signal { padding: 24px 28px; border-right: 1px solid var(--line); }
+    .signal:first-child { padding-left: 0; }
+    .signal:last-child { border-right: 0; }
+    .signal span { display: block; color: #64756b; font: 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .signal strong { display: block; margin-top: 7px; font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
+
+    /* Experience */
+    .experience-list { border-top: 1px solid var(--line); }
+    .experience-item { display: grid; grid-template-columns: 100px minmax(0,1fr) 32px; gap: 26px; padding: 34px 5px 34px 0; border-bottom: 1px solid var(--line); transition: padding .25s, background .25s; }
+    .experience-item:hover { padding-left: 12px; background: linear-gradient(90deg, rgba(168,230,203,.035), transparent 72%); }
+    .exp-num { padding-top: 4px; color: var(--mint); font: 12px var(--mono); }
+    .exp-type { margin: 0 0 10px; color: #9aa99f; font: 10px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .experience-item h3 { margin: 0 0 13px; font-size: clamp(1.2rem, 2.3vw, 1.65rem); line-height: 1.3; letter-spacing: -.04em; }
+    .experience-item p:not(.exp-type) { max-width: 790px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .tag { padding: 6px 9px; border: 1px solid rgba(237,244,239,.1); border-radius: 6px; color: #9eada3; background: rgba(255,255,255,.025); font: 9px var(--mono); letter-spacing: .015em; }
+    .exp-arrow { display: grid; place-items: start end; color: #65746a; font-size: 20px; transition: color .2s, transform .2s; }
+    .experience-item:hover .exp-arrow { color: var(--mint); transform: translate(2px,-2px); }
+
+    /* Skills */
+    .skills-section { background: linear-gradient(180deg, transparent, rgba(255,255,255,.018), transparent); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .skill-card { min-height: 205px; padding: 23px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); transition: transform .25s, border-color .25s, background .25s; }
+    .skill-card:hover { transform: translateY(-5px); border-color: rgba(168,230,203,.35); background: var(--panel-strong); }
+    .skill-icon { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(168,230,203,.18); border-radius: 12px; color: var(--mint); background: rgba(168,230,203,.07); }
+    .skill-icon.violet { color: var(--violet); background: rgba(183,165,255,.07); border-color: rgba(183,165,255,.18); }
+    .skill-icon svg { width: 19px; height: 19px; }
+    .skill-card h3 { margin: 20px 0 8px; font-size: 15px; letter-spacing: -.025em; }
+    .skill-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+
+    /* Upcoming */
+    .future-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .future-card { position: relative; display: flex; flex-direction: column; min-height: 340px; overflow: hidden; padding: 28px; border: 1px solid var(--line); border-radius: 19px; background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.015)); transition: transform .25s, border-color .25s; }
+    .future-card:hover { transform: translateY(-4px); border-color: rgba(168,230,203,.32); }
+    .future-card::after { content: ""; position: absolute; width: 220px; height: 220px; top: -100px; right: -80px; border-radius: 50%; background: radial-gradient(circle, rgba(168,230,203,.13), transparent 70%); pointer-events: none; }
+    .future-card.violet-card::after { background: radial-gradient(circle, rgba(183,165,255,.16), transparent 70%); }
+    .future-top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+    .status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 9px; border: 1px solid rgba(168,230,203,.2); border-radius: 6px; color: var(--mint); background: rgba(168,230,203,.05); font: 9px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .status::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
+    .future-symbol { display: grid; place-items: center; width: 45px; height: 45px; border: 1px solid var(--line); border-radius: 13px; color: var(--mint); background: rgba(255,255,255,.035); }
+    .violet-card .future-symbol { color: var(--violet); }
+    .future-symbol svg { width: 21px; height: 21px; }
+    .future-content { position: relative; z-index: 1; margin-top: 42px; }
+    .future-content .overline { color: #718177; font: 10px var(--mono); letter-spacing: .15em; text-transform: uppercase; }
+    .future-content h3 { margin: 6px 0 12px; font-size: 2rem; letter-spacing: -.06em; }
+    .future-content p { max-width: 470px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .future-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; padding-top: 22px; color: #b9c6bd; font: 9px var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .future-bottom .arrow { font-size: 17px; transition: transform .2s; }
+    .future-card:hover .arrow { transform: translate(3px,-3px); }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr .78fr; gap: 70px; align-items: start; }
+    .about-copy h2 { margin: 12px 0 26px; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.03; letter-spacing: -.07em; }
+    .about-copy h2 em { color: var(--mint); font-style: normal; }
+    .about-copy p { color: var(--muted); font-size: 13px; line-height: 2; margin: 0 0 18px; }
+    .about-note { display: flex; gap: 12px; align-items: center; margin-top: 30px; color: #c5d4ca; font: 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .about-note span { width: 34px; height: 1px; background: var(--violet); }
+    .languages-panel { padding: 25px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.03); }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .panel-head h3 { margin: 0; font: 10px var(--mono); color: var(--mint); letter-spacing: .15em; text-transform: uppercase; }
+    .panel-head span { color: #607067; font: 10px var(--mono); }
+    .language-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 0; border-bottom: 1px solid rgba(237,244,239,.075); }
+    .language-row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .language-name { font-size: 13px; font-weight: 700; }
+    .language-level { color: #9aa99f; font: 9px var(--mono); white-space: nowrap; }
+    .language-level::before { content: ""; display: inline-block; vertical-align: middle; width: 5px; height: 5px; margin-right: 8px; border-radius: 50%; background: var(--violet); }
+
+    /* Contact */
+    .contact-shell { display: grid; grid-template-columns: .85fr 1.15fr; gap: 25px; align-items: stretch; }
+    .contact-intro, .contact-email-panel { border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); padding: clamp(23px, 4vw, 38px); }
+    .contact-intro { display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; overflow: hidden; position: relative; }
+    .contact-intro::after { content: ""; position: absolute; width: 220px; height: 220px; right: -95px; bottom: -105px; border-radius: 50%; background: radial-gradient(circle, rgba(168,230,203,.16), transparent 70%); pointer-events: none; }
+    .contact-intro h3 { position: relative; z-index: 1; margin: 20px 0 14px; font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.08; letter-spacing: -.065em; }
+    .contact-intro p { position: relative; z-index: 1; margin: 0; max-width: 360px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .contact-symbol { position: relative; z-index: 1; display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(168,230,203,.2); border-radius: 14px; color: var(--mint); background: rgba(168,230,203,.07); font-size: 22px; }
+    .contact-email-panel { min-height: 300px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .contact-email-label { color: var(--mint); font: 500 10px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .contact-email-link { display: inline-flex; align-items: center; gap: 12px; width: fit-content; max-width: 100%; color: var(--text); font-size: clamp(1.05rem, 2.1vw, 1.55rem); font-weight: 800; letter-spacing: -.035em; overflow-wrap: anywhere; transition: color .2s, transform .2s; }
+    .contact-email-link:hover { color: var(--mint); transform: translateX(3px); }
+    .contact-email-link span { color: var(--mint); font-size: 1.1em; }
+    .contact-note { color: #718077; font-size: 11px; line-height: 1.8; margin: 0; }
+
+    /* Footer */
+    .footer { border-top: 1px solid var(--line); padding: 27px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: #6f7c73; font: 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .back-top { display: inline-flex; align-items: center; gap: 8px; color: #b4c2b9; transition: color .2s; }
+    .back-top:hover { color: var(--mint); }
+    .back-top span { font-size: 16px; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr) minmax(290px,.82fr); gap: 25px; }
+      .hero h1 { font-size: clamp(4rem, 10vw, 7rem); }
+      .hero-visual { transform: scale(.9); }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid { gap: 40px; }
+      .nav-links a { padding-inline: 9px; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(var(--container), calc(100% - 36px)); }
+      .site-header { top: 10px; padding: 0 12px; }
+      .nav-shell { height: 60px; padding: 0 10px 0 14px; border-radius: 15px; }
+      .nav-links, .nav-cta { display: none; }
+      .language-switch { margin-left: auto; margin-right: 10px; padding: 7px 11px; gap: 7px; font-size: 11px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .mobile-nav { display: flex; visibility: hidden; opacity: 0; transform: translateY(-8px); position: fixed; z-index: 19; top: 79px; left: 12px; right: 12px; flex-direction: column; padding: 10px; border: 1px solid var(--line); border-radius: 16px; background: rgba(11,16,15,.97); backdrop-filter: blur(20px); transition: opacity .2s, transform .2s, visibility .2s; }
+      .mobile-nav.open { visibility: visible; opacity: 1; transform: translateY(0); }
+      .mobile-nav a { padding: 13px 12px; border-radius: 10px; color: #bac7be; font-size: 13px; }
+      .mobile-nav a:hover { background: var(--panel); color: var(--mint); }
+      .hero { min-height: auto; padding: 145px 0 70px; }
+      .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 25px; }
+      .hero h1 { font-size: clamp(4.4rem, 17vw, 7rem); margin-top: 23px; }
+      .hero-copy { max-width: 610px; font-size: 14px; }
+      .hero-visual { width: 100%; min-height: 390px; margin: 0 auto; transform: none; }
+      .visual-halo { width: 300px; height: 300px; }
+      .orbit.one { width: 340px; height: 190px; }
+      .orbit.two { width: 300px; height: 300px; }
+      .orbit.three { width: 235px; height: 360px; }
+      .visual-core { transform: rotate(-5deg) scale(.9); }
+      .float-card.card-a { left: max(0px, calc(50% - 180px)); top: 36px; }
+      .float-card.card-b { right: max(0px, calc(50% - 175px)); bottom: 38px; }
+      .visual-label { bottom: 0; }
+      .signal-inner { grid-template-columns: 1fr; }
+      .signal { padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .signal:last-child { border-bottom: 0; }
+      .section { padding: 76px 0; }
+      .section-head { margin-bottom: 29px; }
+      .experience-item { grid-template-columns: 42px minmax(0,1fr) 16px; gap: 12px; padding: 27px 0; }
+      .exp-num { font-size: 10px; }
+      .experience-item h3 { font-size: 1.22rem; }
+      .experience-item p:not(.exp-type) { font-size: 12px; }
+      .exp-type { font-size: 9px; }
+      .tag { font-size: 8px; }
+      .skills-grid { gap: 10px; }
+      .skill-card { padding: 17px; min-height: 196px; }
+      .skill-card h3 { font-size: 13px; }
+      .skill-card p { font-size: 11px; }
+      .future-grid { grid-template-columns: 1fr; }
+      .future-card { min-height: 310px; padding: 23px; }
+      .about-grid { grid-template-columns: 1fr; gap: 35px; }
+      .about-copy h2 { font-size: 2.8rem; }
+      .contact-shell { grid-template-columns: 1fr; gap: 14px; }
+      .contact-intro { min-height: 260px; }
+      .contact-form .field-pair { grid-template-columns: 1fr; gap: 15px; }
+      .contact-form .btn { width: 100%; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 420px) {
+      .brand { font-size: 11px; }
+      .hero h1 { font-size: 4.15rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .hero-visual { min-height: 340px; }
+      .orbit.one { width: 290px; }
+      .orbit.two { width: 260px; height: 260px; }
+      .orbit.three { height: 320px; }
+      .visual-core { transform: rotate(-5deg) scale(.8); }
+      .float-card { padding: 10px; }
+      .float-card.card-a { left: 0; }
+      .float-card.card-b { right: 0; }
+      .float-card strong { font-size: 10px; }
+      .skill-card { min-height: 218px; padding: 14px; }
+      .language-name { font-size: 12px; }
+      .language-level { font-size: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a href="#top" class="brand" aria-label="Fariz Jafarov ana sayfa">
+        <span class="brand-mark">FJ</span><span>FARİZ JAFAROV</span>
+      </a>
+      <div class="language-switch" role="group" aria-label="Language / Dil">
+        <button type="button" data-lang="tr" class="active" aria-pressed="true">TR</button><span>/</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <nav class="nav-links" aria-label="Ana menü">
+        <a href="#experience">Deneyim</a>
+        <a href="#capabilities">Yetkinlikler</a>
+        <a href="#projects">Projeler</a>
+        <a href="#about">Hakkımda</a>
+        <a href="#contact">İletişim</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Menüyü aç">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobil menü">
+    <a href="#experience">Deneyim</a><a href="#capabilities">Yetkinlikler</a><a href="#projects">Projeler</a><a href="#about">Hakkımda</a><a href="#contact">İletişim</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-content reveal in-view">
+          <div class="availability"><span class="availability-dot"></span> TEKNOLOJİ & ORGANİZASYON</div>
+          <h1><span>FARİZ</span><span class="surname">JAFAROV</span></h1>
+          <p class="hero-copy">Bilgisayar mühendisliği bakış açısını <strong>uluslararası organizasyon deneyimiyle</strong> birleştiriyorum. Teknoloji, saha operasyonları ve insanlarla kurulan güçlü iletişim arasında anlamlı bağlantılar kurmayı seviyorum.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#experience">Deneyimlerimi gör <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7v10H7"/></svg></a>
+            <a class="btn btn-secondary" href="#about">Kısa profil <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-footnote">Analitik düşünce · Sahada uygulama · Sürekli gelişim</div>
+        </div>
+
+        <div class="hero-visual reveal reveal-delay-2" aria-label="Teknoloji ve organizasyon temalı soyut görsel">
+          <div class="visual-halo"></div><div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div><span class="orbit-dot"></span>
+          <div class="visual-core">
+            <div class="visual-top"><span>PORTFOLIO / 2026</span><span>01—04</span></div>
+            <div class="monogram"><span>F</span><span>J</span></div>
+          </div>
+          <div class="float-card card-a"><span class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h3"/></svg></span><span><small>01 / Operasyon</small><strong>Koordinasyon</strong></span></div>
+          <div class="float-card card-b"><span class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8v8H8zM3 9h5M16 15h5M9 3v5M15 16v5"/></svg></span><span><small>02 / Teknoloji</small><strong>Dijital sistemler</strong></span></div>
+          <div class="visual-label">PEOPLE · PROCESS · TECHNOLOGY</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="signal-strip" aria-label="Öne çıkan alanlar">
+      <div class="container signal-inner">
+        <div class="signal"><span>Odak alanı / 01</span><strong>Teknoloji ve dijital sistemler</strong></div>
+        <div class="signal"><span>Odak alanı / 02</span><strong>Uluslararası etkinlik operasyonları</strong></div>
+        <div class="signal"><span>Çalışma yaklaşımı / 03</span><strong>Takım çalışması ve çözüm odaklılık</strong></div>
+      </div>
+    </div>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">Deneyim rotası</p><h2>Sahada öğrendiklerim<span style="color:var(--mint)">.</span></h2></div>
+          <span class="section-index">01 — EXPERIENCE</span>
+        </div>
+        <div class="experience-list">
+          <article class="experience-item reveal">
+            <div class="exp-num">01 /</div>
+            <div><p class="exp-type">Kayıt Departmanı · Registration Department</p><h3>Baku Real Estate Expo ’26 (BREE ’26)</h3><p>Uluslararası gayrimenkul ve yatırım fuarında misafirler, yatırımcılar ve katılımcılar için dijital kayıt veritabanını yönettim. Giriş alanlarında bilet ve yaka kartı teminiyle akıllı yönlendirme süreçlerine destek verdim.</p><div class="tags"><span class="tag">Veritabanı yönetimi</span><span class="tag">Dijital kayıt</span><span class="tag">Katılımcı yönlendirme</span></div></div>
+            <div class="exp-arrow" aria-hidden="true">↗</div>
+          </article>
+          <article class="experience-item reveal">
+            <div class="exp-num">02 /</div>
+            <div><p class="exp-type">Etkinlik koordinasyon gönüllüsü</p><h3>3rd Int. Turkic World Strategic Studies Congress</h3><p>Marmara Üniversitesi’nde düzenlenen uluslararası akademik kongrenin organizasyonunda görev aldım. Konuşmacı ve davetlilerin karşılanmasının yanı sıra salon içi koordinasyonu yürüttüm.</p><div class="tags"><span class="tag">Kongre organizasyonu</span><span class="tag">Protokol & karşılama</span><span class="tag">Salon koordinasyonu</span></div></div>
+            <div class="exp-arrow" aria-hidden="true">↗</div>
+          </article>
+          <article class="experience-item reveal">
+            <div class="exp-num">03 /</div>
+            <div><p class="exp-type">Genel ve kalabalık yönetimi gönüllüsü</p><h3>Baku City Circuit — Azerbaijan Grand Prix</h3><p>Formula 1 Azerbaycan Grand Prix organizasyonunda saha operasyonları, kalabalık yönetimi ve uluslararası ziyaretçilerin yönlendirilmesi süreçlerinde aktif görev aldım.</p><div class="tags"><span class="tag">Saha operasyonu</span><span class="tag">Kalabalık yönetimi</span><span class="tag">Ziyaretçi deneyimi</span></div></div>
+            <div class="exp-arrow" aria-hidden="true">↗</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills-section" id="capabilities">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">Yetkinlik haritası</p><h2>İş yapış biçimim<span style="color:var(--violet)">.</span></h2></div>
+          <span class="section-index">02 — CAPABILITIES</span>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14l2 2 5-5"/></svg></div><h3>Organizasyon & koordinasyon</h3><p>Uluslararası kongre, fuar ve saha etkinliklerinde akış planlaması ve koordinasyon.</p></article>
+          <article class="skill-card reveal reveal-delay-1"><div class="skill-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div><h3>Teknoloji & dijital sistemler</h3><p>Teknik sistemleri anlama, yazılımlara hızlı adapte olma ve mühendislik bakış açısı.</p></article>
+          <article class="skill-card reveal reveal-delay-2"><div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><h3>Veri & kayıt yönetimi</h3><p>Katılımcı veritabanları, akreditasyon ve hızlı doğrulama süreçleri.</p></article>
+          <article class="skill-card reveal"><div class="skill-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6"/></svg></div><h3>İletişim & takım çalışması</h3><p>Çok kültürlü ve dinamik ekiplerde etkili iletişim ve ortak hedefe odaklanma.</p></article>
+          <article class="skill-card reveal reveal-delay-1"><div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Problem & kriz yönetimi</h3><p>Yoğun tempolu operasyonlarda aksaklıklara hızlı, sakin ve analitik yaklaşım.</p></article>
+          <article class="skill-card reveal reveal-delay-2"><div class="skill-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2v2M12 16v2M4.9 4.9l1.4 1.4M17.7 13.7l1.4 1.4M2 10h2M20 10h2M4.9 15.1l1.4-1.4M17.7 6.3l1.4-1.4M12 19v3"/><path d="M7 21h10"/></svg></div><h3>Kalabalık yönetimi</h3><p>Büyük ölçekli organizasyonlarda ziyaretçi trafiğini güvenli ve verimli yönlendirme.</p></article>
+                  </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">Sonraki durak</p><h2>Yapım aşamasında<span style="color:var(--mint)">.</span></h2></div>
+          <span class="section-index">03 — COMING SOON</span>
+        </div>
+        <div class="future-grid">
+          <article class="future-card reveal">
+            <div class="future-top"><span class="status">Hazırlanıyor</span><span class="future-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8l-8.2-1.8a.9.9 0 0 0-.9 1.5l5 4.3-3.4 3.4-2.8-.7-.9.9 3.8 2.2 2.2 3.8.9-.9-.7-2.8 3.4-3.4 4.3 5a.9.9 0 0 0 1.5-.9z"/></svg></span></div>
+            <div class="future-content"><span class="overline">01 / Aviation</span><h3>Havacılık dünyası</h3><p>Uçaklar, havacılık teknolojileri ve uçak parçalarına odaklanan yeni bir platform. Sektördeki yenilikleri ve bileşen dünyasını tek noktada buluşturmayı hedefliyor.</p></div>
+            <div class="future-bottom"><span>Yeni bir deneyim için geri sayım</span><span class="arrow" aria-hidden="true">↗</span></div>
+          </article>
+          <article class="future-card violet-card reveal reveal-delay-1">
+            <div class="future-top"><span class="status" style="color:var(--violet);border-color:rgba(183,165,255,.25);background:rgba(183,165,255,.05)">Hazırlanıyor</span><span class="future-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM4 9h16M9 5v4M15 5v4M7 13h4M7 16h2M15 13h2"/></svg></span></div>
+            <div class="future-content"><span class="overline">02 / Formula 1</span><h3>F1 merkezi</h3><p>Pilot ve takım analizleri, yarış takvimi ve ayrıntılı istatistiklerle Formula 1 dünyasındaki gelişmeleri bir araya getirmeyi amaçlayan bir proje.</p></div>
+            <div class="future-bottom"><span>Start çizgisine doğru</span><span class="arrow" aria-hidden="true">↗</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <p class="eyebrow">Kişisel özet</p>
+          <h2>Teknik düşünce.<br><em>İnsan odaklı</em> yaklaşım.</h2>
+          <p>Ben Fariz Jafarov. Bilgisayar mühendisliği geçmişimi, uluslararası organizasyonlarda ve büyük ölçekli etkinliklerde edindiğim saha tecrübesiyle birleştiriyorum. Dijital kayıt sistemlerinden akademik kongre koordinasyonuna ve küresel spor organizasyonlarına uzanan süreçlerde teknik ve operasyonel sorumluluklar üstlendim.</p>
+          <p>Analitik düşünme yapım, teknolojiye olan ilgim ve iletişim becerilerimle karmaşık süreçleri daha düzenli ve verimli iş akışlarına dönüştürmeyi seviyorum. Takım ruhuna inanan, sorunları çözüm fırsatı olarak gören ve her projede kendini geliştirmeyi hedefleyen bir yaklaşımla ilerliyorum.</p>
+          <div class="about-note"><span></span> Öğrenmeye açık · Disiplinli · Çözüm odaklı</div>
+        </div>
+
+        <aside class="languages-panel reveal reveal-delay-1">
+          <div class="panel-head"><h3>Dil yetkinlikleri</h3><span>04 LANGUAGES</span></div>
+          <div class="language-row"><span class="language-name">Azerbaycan dili</span><span class="language-level">Ana dili</span></div>
+          <div class="language-row"><span class="language-name">Türk dili</span><span class="language-level">Çok iyi</span></div>
+          <div class="language-row"><span class="language-name">İngiliz dili</span><span class="language-level">Orta seviye</span></div>
+          <div class="language-row"><span class="language-name">Rus dili</span><span class="language-level">Başlangıç</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">Birlikte üretelim</p><h2>İletişim<span style="color:var(--mint)">.</span></h2></div>
+          <span class="section-index">05 — CONTACT</span>
+        </div>
+        <div class="contact-shell">
+          <div class="contact-intro reveal">
+            <div>
+              <h3>Yeni bir fikir,<br><em style="color:var(--mint);font-style:normal">güzel bir başlangıç</em> olabilir.</h3>
+              <p>Proje, etkinlik ve iş birliği fırsatları hakkında konuşmak için e-posta gönderebilirsin.</p>
+            </div>
+          </div>
+          <div class="contact-email-panel reveal reveal-delay-1">
+            <span class="contact-email-label">E-posta adresim</span>
+            <a class="contact-email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=farizcfrov673%40gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail üzerinden Fariz Jafarov adresine e-posta gönder">farizcfrov673@gmail.com <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner"><span>© <span id="year">2026</span> Fariz Jafarov. Tüm hakları saklıdır.</span><a class="back-top" href="#top">Başa dön <span aria-hidden="true">↑</span></a></div>
+  </footer>
+    <script>
+    (() => {
+      const toggle = document.getElementById('menuToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      let currentLanguage = 'tr';
+
+      const closeMenu = () => {
+        mobileNav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', currentLanguage === 'en' ? 'Open menu' : 'Menüyü aç');
+      };
+
+      toggle.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? (currentLanguage === 'en' ? 'Close menu' : 'Menüyü kapat') : (currentLanguage === 'en' ? 'Open menu' : 'Menüyü aç'));
+      });
+
+      mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+
+      const revealItems = document.querySelectorAll('.reveal:not(.in-view)');
+
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        revealItems.forEach(item => observer.observe(item));
+      } else {
+        revealItems.forEach(item => item.classList.add('in-view'));
+      }
+
+      const sections = [...document.querySelectorAll('main section[id]')];
+      const navLinks = [...document.querySelectorAll('.nav-links a')];
+
+      if ('IntersectionObserver' in window) {
+        const navObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+            }
+          });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+
+        sections.forEach(section => navObserver.observe(section));
+      }
+
+      const translations = {
+        tr: {
+          'nav[0]':'Deneyim',
+          'nav[1]':'Yetkinlikler',
+          'nav[2]':'Projeler',
+          'nav[3]':'Hakkımda',
+          'nav[4]':'İletişim',
+
+          '.availability':'TEKNOLOJİ & ORGANİZASYON',
+          '.hero-copy':'Bilgisayar mühendisliği bakış açısını <strong>uluslararası organizasyon deneyimiyle</strong> birleştiriyorum. Teknoloji, saha operasyonları ve insanlarla kurulan güçlü iletişim arasında anlamlı bağlantılar kurmayı seviyorum.',
+          '.hero-actions .btn-primary':'Deneyimlerimi gör <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7v10H7"/></svg>',
+          '.hero-actions .btn-secondary':'Kısa profil <span aria-hidden="true">↓</span>',
+          '.hero-footnote':'Analitik düşünce · Sahada uygulama · Sürekli gelişim',
+
+          '.signal:nth-child(1) span':'Odak alanı / 01',
+          '.signal:nth-child(1) strong':'Teknoloji ve dijital sistemler',
+          '.signal:nth-child(2) span':'Odak alanı / 02',
+          '.signal:nth-child(2) strong':'Uluslararası etkinlik operasyonları',
+          '.signal:nth-child(3) span':'Çalışma yaklaşımı / 03',
+          '.signal:nth-child(3) strong':'Takım çalışması ve çözüm odaklılık',
+
+          '#experience .eyebrow':'Deneyim rotası',
+          '#experience h2':'Sahada öğrendiklerim<span style="color:var(--mint)">.</span>',
+
+          '.experience-item:nth-child(1) .exp-type':'Kayıt Departmanı · Registration Department',
+          '.experience-item:nth-child(1) div > p:not(.exp-type)':'Uluslararası gayrimenkul ve yatırım fuarında misafirler, yatırımcılar ve katılımcılar için dijital kayıt veritabanını yönettim. Giriş alanlarında bilet ve yaka kartı teminiyle akıllı yönlendirme süreçlerine destek verdim.',
+          '.experience-item:nth-child(1) .tag:nth-child(1)':'Veritabanı yönetimi',
+          '.experience-item:nth-child(1) .tag:nth-child(2)':'Dijital kayıt',
+          '.experience-item:nth-child(1) .tag:nth-child(3)':'Katılımcı yönlendirme',
+
+          '.experience-item:nth-child(2) .exp-type':'Etkinlik koordinasyon gönüllüsü',
+          '.experience-item:nth-child(2) div > p:not(.exp-type)':'Marmara Üniversitesi’nde düzenlenen uluslararası akademik kongrenin organizasyonunda görev aldım. Konuşmacı ve davetlilerin karşılanmasının yanı sıra salon içi koordinasyonu yürüttüm.',
+          '.experience-item:nth-child(2) .tag:nth-child(1)':'Kongre organizasyonu',
+          '.experience-item:nth-child(2) .tag:nth-child(2)':'Protokol & karşılama',
+          '.experience-item:nth-child(2) .tag:nth-child(3)':'Salon koordinasyonu',
+
+          '.experience-item:nth-child(3) .exp-type':'Genel ve kalabalık yönetimi gönüllüsü',
+          '.experience-item:nth-child(3) div > p:not(.exp-type)':'Formula 1 Azerbaycan Grand Prix organizasyonunda saha operasyonları, kalabalık yönetimi ve uluslararası ziyaretçilerin yönlendirilmesi süreçlerinde aktif görev aldım.',
+          '.experience-item:nth-child(3) .tag:nth-child(1)':'Saha operasyonu',
+          '.experience-item:nth-child(3) .tag:nth-child(2)':'Kalabalık yönetimi',
+          '.experience-item:nth-child(3) .tag:nth-child(3)':'Ziyaretçi deneyimi',
+
+          '#capabilities .eyebrow':'Yetkinlik haritası',
+          '#capabilities h2':'İş yapış biçimim<span style="color:var(--violet)">.</span>',
+
+          '.skill-card:nth-child(1) h3':'Organizasyon & koordinasyon',
+          '.skill-card:nth-child(1) p':'Uluslararası kongre, fuar ve saha etkinliklerinde akış planlaması ve koordinasyon.',
+          '.skill-card:nth-child(2) h3':'Teknoloji & dijital sistemler',
+          '.skill-card:nth-child(2) p':'Teknik sistemleri anlama, yazılımlara hızlı adapte olma ve mühendislik bakış açısı.',
+          '.skill-card:nth-child(3) h3':'Veri & kayıt yönetimi',
+          '.skill-card:nth-child(3) p':'Katılımcı veritabanları, akreditasyon ve hızlı doğrulama süreçleri.',
+          '.skill-card:nth-child(4) h3':'İletişim & takım çalışması',
+          '.skill-card:nth-child(4) p':'Çok kültürlü ve dinamik ekiplerde etkili iletişim ve ortak hedefe odaklanma.',
+          '.skill-card:nth-child(5) h3':'Problem & kriz yönetimi',
+          '.skill-card:nth-child(5) p':'Yoğun tempolu operasyonlarda aksaklıklara hızlı, sakin ve analitik yaklaşım.',
+          '.skill-card:nth-child(6) h3':'Kalabalık yönetimi',
+          '.skill-card:nth-child(6) p':'Büyük ölçekli organizasyonlarda ziyaretçi trafiğini güvenli ve verimli yönlendirme.',
+
+          '#projects .eyebrow':'Sonraki durak',
+          '#projects h2':'Yapım aşamasında<span style="color:var(--mint)">.</span>',
+
+          '.future-card:nth-child(1) .status':'Hazırlanıyor',
+          '.future-card:nth-child(1) h3':'Havacılık dünyası',
+          '.future-card:nth-child(1) .future-content p':'Uçaklar, havacılık teknolojileri ve uçak parçalarına odaklanan yeni bir platform. Sektördeki yenilikleri ve bileşen dünyasını tek noktada buluşturmayı hedefliyor.',
+          '.future-card:nth-child(1) .future-bottom span:first-child':'Yeni bir deneyim için geri sayım',
+
+          '.future-card:nth-child(2) .status':'Hazırlanıyor',
+          '.future-card:nth-child(2) h3':'F1 merkezi',
+          '.future-card:nth-child(2) .future-content p':'Pilot ve takım analizleri, yarış takvimi ve ayrıntılı istatistiklerle Formula 1 dünyasındaki gelişmeleri bir araya getirmeyi amaçlayan bir proje.',
+          '.future-card:nth-child(2) .future-bottom span:first-child':'Start çizgisine doğru',
+
+          '#about .eyebrow':'Kişisel özet',
+          '#about h2':'Teknik düşünce.<br><em>İnsan odaklı</em> yaklaşım.',
+          '#about .about-copy p:nth-of-type(2)':'Ben Fariz Jafarov. Bilgisayar mühendisliği geçmişimi, uluslararası organizasyonlarda ve büyük ölçekli etkinliklerde edindiğim saha tecrübesiyle birleştiriyorum. Dijital kayıt sistemlerinden akademik kongre koordinasyonuna ve küresel spor organizasyonlarına uzanan süreçlerde teknik ve operasyonel sorumluluklar üstlendim.',
+          '#about .about-copy p:nth-of-type(3)':'Analitik düşünme yapım, teknolojiye olan ilgim ve iletişim becerilerimle karmaşık süreçleri daha düzenli ve verimli iş akışlarına dönüştürmeyi seviyorum. Takım ruhuna inanan, sorunları çözüm fırsatı olarak gören ve her projede kendini geliştirmeyi hedefleyen bir yaklaşımla ilerliyorum.',
+          '#about .about-note':'<span></span> Öğrenmeye açık · Disiplinli · Çözüm odaklı',
+          '#about .panel-head h3':'Dil yetkinlikleri',
+
+          '.languages-panel .language-row:nth-child(2) .language-name':'Azerbaycan dili',
+          '.languages-panel .language-row:nth-child(3) .language-name':'Türk dili',
+          '.languages-panel .language-row:nth-child(4) .language-name':'İngiliz dili',
+          '.languages-panel .language-row:nth-child(5) .language-name':'Rus dili',
+
+          '.languages-panel .language-row:nth-child(2) .language-level':'Ana dili',
+          '.languages-panel .language-row:nth-child(3) .language-level':'Çok iyi',
+          '.languages-panel .language-row:nth-child(4) .language-level':'Orta seviye',
+          '.languages-panel .language-row:nth-child(5) .language-level':'Başlangıç',
+
+          '#contact .eyebrow':'Birlikte üretelim',
+          '#contact h2':'İletişim<span style="color:var(--mint)">.</span>',
+          '.contact-intro h3':'Yeni bir fikir,<br><em style="color:var(--mint);font-style:normal">güzel bir başlangıç</em> olabilir.',
+          '.contact-intro p':'Proje, etkinlik ve iş birliği fırsatları hakkında konuşmak için e-posta gönderebilirsin.',
+          '.contact-email-label':'E-posta adresim',
+          '.back-top':'Başa dön <span aria-hidden="true">↑</span>',
+          'footer':'© {year} Fariz Jafarov. Tüm hakları saklıdır.'
+        },
+
+        en: {
+          'nav[0]':'Experience',
+          'nav[1]':'Skills',
+          'nav[2]':'Projects',
+          'nav[3]':'About',
+          'nav[4]':'Contact',
+
+          '.availability':'TECHNOLOGY & ORGANIZATION',
+          '.hero-copy':'I combine a computer engineering perspective with <strong>international event experience</strong>. I enjoy building meaningful connections between technology, field operations, and strong communication with people.',
+          '.hero-actions .btn-primary':'Explore my experience <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7v10H7"/></svg>',
+          '.hero-actions .btn-secondary':'Quick profile <span aria-hidden="true">↓</span>',
+          '.hero-footnote':'Analytical thinking · Practical execution · Continuous growth',
+
+          '.signal:nth-child(1) span':'FOCUS AREA / 01',
+          '.signal:nth-child(1) strong':'Technology & digital systems',
+          '.signal:nth-child(2) span':'FOCUS AREA / 02',
+          '.signal:nth-child(2) strong':'International event operations',
+          '.signal:nth-child(3) span':'WORKING STYLE / 03',
+          '.signal:nth-child(3) strong':'Teamwork & solution-oriented mindset',
+
+          '#experience .eyebrow':'Experience roadmap',
+          '#experience h2':'What I learned on the ground<span style="color:var(--mint)">.</span>',
+
+          '.experience-item:nth-child(1) .exp-type':'Registration Department',
+          '.experience-item:nth-child(1) div > p:not(.exp-type)':'Managed the digital registration database for guests, investors, and attendees at an international real estate and investment expo. Supported ticket and badge distribution as well as visitor guidance at entry points.',
+          '.experience-item:nth-child(1) .tag:nth-child(1)':'Database management',
+          '.experience-item:nth-child(1) .tag:nth-child(2)':'Digital registration',
+          '.experience-item:nth-child(1) .tag:nth-child(3)':'Attendee guidance',
+
+          '.experience-item:nth-child(2) .exp-type':'Event coordination volunteer',
+          '.experience-item:nth-child(2) div > p:not(.exp-type)':'Helped organize an international academic congress held at Marmara University. Welcomed speakers and guests and coordinated activities inside the conference hall.',
+          '.experience-item:nth-child(2) .tag:nth-child(1)':'Congress organization',
+          '.experience-item:nth-child(2) .tag:nth-child(2)':'Protocol & reception',
+          '.experience-item:nth-child(2) .tag:nth-child(3)':'Venue coordination',
+
+          '.experience-item:nth-child(3) .exp-type':'General & crowd management volunteer',
+          '.experience-item:nth-child(3) div > p:not(.exp-type)':'Actively supported field operations, crowd management, and guidance for international visitors at the Formula 1 Azerbaijan Grand Prix.',
+          '.experience-item:nth-child(3) .tag:nth-child(1)':'Field operations',
+          '.experience-item:nth-child(3) .tag:nth-child(2)':'Crowd management',
+          '.experience-item:nth-child(3) .tag:nth-child(3)':'Visitor experience',
+
+          '#capabilities .eyebrow':'Capability map',
+          '#capabilities h2':'How I work<span style="color:var(--violet)">.</span>',
+
+          '.skill-card:nth-child(1) h3':'Organization & coordination',
+          '.skill-card:nth-child(1) p':'Workflow planning and coordination for international congresses, expos, and field events.',
+          '.skill-card:nth-child(2) h3':'Technology & digital systems',
+          '.skill-card:nth-child(2) p':'Understanding technical systems, adapting quickly to software, and applying an engineering mindset.',
+          '.skill-card:nth-child(3) h3':'Data & registration management',
+          '.skill-card:nth-child(3) p':'Attendee databases, accreditation, and fast verification processes.',
+          '.skill-card:nth-child(4) h3':'Communication & teamwork',
+          '.skill-card:nth-child(4) p':'Effective communication and shared goals in diverse, fast-moving teams.',
+          '.skill-card:nth-child(5) h3':'Problem & crisis management',
+          '.skill-card:nth-child(5) p':'A calm, fast, and analytical approach to challenges in high-pressure operations.',
+          '.skill-card:nth-child(6) h3':'Crowd management',
+          '.skill-card:nth-child(6) p':'Guiding visitor flows safely and efficiently at large-scale events.',
+
+          '#projects .eyebrow':'What comes next',
+          '#projects h2':'In development<span style="color:var(--mint)">.</span>',
+
+          '.future-card:nth-child(1) .status':'In progress',
+          '.future-card:nth-child(1) h3':'Aviation hub',
+          '.future-card:nth-child(1) .future-content p':'A new platform focused on aircraft, aviation technologies, and aircraft components. It aims to bring industry innovations and component knowledge together in one place.',
+          '.future-card:nth-child(1) .future-bottom span:first-child':'Counting down to a new experience',
+
+          '.future-card:nth-child(2) .status':'In progress',
+          '.future-card:nth-child(2) h3':'F1 hub',
+          '.future-card:nth-child(2) .future-content p':'A project bringing together Formula 1 updates through driver and team analysis, race schedules, and detailed statistics.',
+          '.future-card:nth-child(2) .future-bottom span:first-child':'Heading for the starting grid',
+
+          '#about .eyebrow':'About me',
+          '#about h2':'Technical thinking.<br><em>People-first</em> approach.',
+          '#about .about-copy p:nth-of-type(2)':'I am Fariz Jafarov. I combine my computer engineering background with field experience gained at international organizations and large-scale events. I have taken on technical and operational responsibilities ranging from digital registration systems and academic congress coordination to global sporting events.',
+          '#about .about-copy p:nth-of-type(3)':'I enjoy turning complex processes into more organized and efficient workflows through analytical thinking, an interest in technology, and communication skills. I believe in teamwork, see challenges as opportunities to find solutions, and aim to grow with every project.',
+          '#about .about-note':'<span></span> Curious · Disciplined · Solution-oriented',
+          '#about .panel-head h3':'Language skills',
+
+          '.languages-panel .language-row:nth-child(2) .language-name':'Azerbaijani',
+          '.languages-panel .language-row:nth-child(3) .language-name':'Turkish',
+          '.languages-panel .language-row:nth-child(4) .language-name':'English',
+          '.languages-panel .language-row:nth-child(5) .language-name':'Russian',
+
+          '.languages-panel .language-row:nth-child(2) .language-level':'Native',
+          '.languages-panel .language-row:nth-child(3) .language-level':'Very good',
+          '.languages-panel .language-row:nth-child(4) .language-level':'Intermediate',
+          '.languages-panel .language-row:nth-child(5) .language-level':'Beginner',
+
+          '#contact .eyebrow':'Let’s build together',
+          '#contact h2':'Contact<span style="color:var(--mint)">.</span>',
+          '.contact-intro h3':'A new idea can be<br><em style="color:var(--mint);font-style:normal">a great beginning.</em>',
+          '.contact-intro p':'Send me an email to discuss projects, events, and collaboration opportunities.',
+          '.contact-email-label':'Email me',
+          '.back-top':'Back to top <span aria-hidden="true">↑</span>',
+          'footer':'© {year} Fariz Jafarov. All rights reserved.'
+        }
+      };
+
+      const originalHTML = new Map();
+
+      function applyLanguage(lang) {
+        currentLanguage = lang;
+        document.documentElement.lang = lang;
+
+        const nav = document.querySelectorAll('.nav-links a');
+        const mobile = document.querySelectorAll('.mobile-nav a');
+
+        ['nav[0]','nav[1]','nav[2]','nav[3]','nav[4]'].forEach((key, i) => {
+          nav[i].textContent = translations[lang][key];
+          mobile[i].textContent = translations[lang][key];
+        });
+
+        Object.entries(translations[lang]).forEach(([selector, value]) => {
+          if (selector.startsWith('nav[') || selector === 'footer') return;
+
+          document.querySelectorAll(selector).forEach((el, i) => {
+            const key = lang + '|' + selector + '|' + i;
+            if (!originalHTML.has(key)) originalHTML.set(key, el.innerHTML);
+            el.innerHTML = value;
+          });
+        });
+
+        document.querySelectorAll('[data-lang]').forEach(button => {
+          const selected = button.dataset.lang === lang;
+          button.classList.toggle('active', selected);
+          button.setAttribute('aria-pressed', String(selected));
+        });
+
+        document.title = lang === 'en'
+          ? 'Fariz Jafarov — Technology × Organization'
+          : 'Fariz Jafarov — Teknoloji × Organizasyon';
+
+        document.querySelector('meta[name="description"]').content = lang === 'en'
+          ? 'Fariz Jafarov — Computer engineering, technology, and international event experience.'
+          : 'Fariz Jafarov — Bilgisayar mühendisliği, teknoloji ve uluslararası organizasyon deneyimleri.';
+
+        const footer = document.querySelector('.footer-inner > span');
+        footer.innerHTML = translations[lang].footer.replace('{year}', new Date().getFullYear());
+
+        document.querySelector('.brand').setAttribute('aria-label', lang === 'en' ? 'Fariz Jafarov home' : 'Fariz Jafarov ana sayfa');
+        document.querySelector('.nav-links').setAttribute('aria-label', lang === 'en' ? 'Main navigation' : 'Ana menü');
+        document.querySelector('.mobile-nav').setAttribute('aria-label', lang === 'en' ? 'Mobile navigation' : 'Mobil menü');
+        document.getElementById('menuToggle').setAttribute('aria-label', lang === 'en' ? 'Open menu' : 'Menüyü aç');
+
+        try {
+          localStorage.setItem('fariz-portfolio-language', lang);
+        } catch (e) {}
+      }
+
+      document.querySelectorAll('[data-lang]').forEach(button => {
+        button.addEventListener('click', () => applyLanguage(button.dataset.lang));
+      });
+
+      let initialLang = 'tr';
+
+      try {
+        initialLang = localStorage.getItem('fariz-portfolio-language') || 'tr';
+      } catch (e) {}
+
+      applyLanguage(initialLang);
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
